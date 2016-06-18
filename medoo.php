@@ -509,25 +509,23 @@ class medoo
 
 				if (is_numeric($LIMIT))
 				{
-					$where_clause .= ' LIMIT ' . $LIMIT;
 					if(isset($where[ 'OFFSET'])){
+
 						$OFFSET = $where[ 'OFFSET'];
+
 						if (is_numeric($OFFSET))
 						{
-							if ($this->database_type === 'pgsql')
-							{
-								$where_clause .= ' OFFSET ' . $OFFSET;
+							if ($this->database_type === 'pgsql'){
+								$where_clause .= ' OFFSET ' . $LIMIT . ' LIMIT ' . $OFFSET  ;
 							}
-							else
-							{
-								$where_clause .= ', ' . $OFFSET;
+							else{
+								$where_clause .= ' LIMIT ' . $OFFSET . ', ' . $LIMIT;
 							}
 						}
+					}else{
+						$where_clause .= ' LIMIT ' . $LIMIT;
 					}
 				}
-				
-				
-				
 			}
 			
 		}
