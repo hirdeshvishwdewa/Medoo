@@ -422,7 +422,7 @@ class medoo
 			$where_OR = preg_grep("/^OR\s*#?$/i", $where_keys);
 
 			$single_condition = array_diff_key($where, array_flip(
-				explode(' ', 'AND OR GROUP ORDER HAVING LIMIT LIKE MATCH')
+				explode(' ', 'AND OR GROUP ORDER HAVING LIMIT LIKE MATCH OFFSET')
 			));
 
 			if ($single_condition != array())
